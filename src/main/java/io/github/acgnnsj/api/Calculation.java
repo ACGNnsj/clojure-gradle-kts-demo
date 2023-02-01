@@ -1,4 +1,4 @@
-package org.example.api;
+package io.github.acgnnsj.api;
 
 import java.util.Arrays;
 

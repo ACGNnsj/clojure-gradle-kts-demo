@@ -2,7 +2,6 @@ import dev.clojurephant.plugin.clojure.tasks.ClojureCompile
 import groovy.xml.dom.DOMCategory.attributes
 
 //import clojuresque.tasks.ClojureSourceSet
-//import groovy.xml.dom.DOMCategory.attributes
 
 /*buildscript {
     repositories {
@@ -23,8 +22,10 @@ plugins {
     id("maven-publish")
 }
 
-group = "org.example"
+group = "io.github.acgnnsj"
 version = "1.0-SNAPSHOT"
+val artifactIdentifier = "clojure-java"
+val clojureMainClassName = "main.hello"
 
 repositories {
     mavenCentral()
@@ -50,14 +51,15 @@ tasks.getByName<Test>("test") {
 var count: Int = 0
 tasks.withType<ClojureCompile> {
     println("${count++}: compileClojure")
+    println("${System.getenv()["HOMEDRIVE"]}")
 }
 
 tasks.jar {
     manifest {
         attributes(
             mapOf(
-                "Main-Class" to "main.hello",
-                "Implementation-Title" to "clojure-lib",
+                "Main-Class" to clojureMainClassName,
+                "Implementation-Title" to artifactIdentifier,
                 "Implementation-Version" to archiveVersion
             )
         )
@@ -71,7 +73,7 @@ tasks.jar {
 //    }
 //}
 application {
-    mainClassName = "main.hello"
+    mainClassName = clojureMainClassName
 }
 
 val sourceJar by tasks.registering(Jar::class) {
@@ -84,9 +86,12 @@ publishing {
         create<MavenPublication>("mavenJava") {
             artifact(sourceJar)
             afterEvaluate { artifact(tasks.getByName("jar")) }
-            groupId = "com.xxx"
-            artifactId = "widget"
-            version = "1.0.0"
+            groupId = group.toString()
+            artifactId = artifactIdentifier
+//            println(this)
+//            println(this.version)
+//            println(it)
+//            version = "1.0.0"
         }
     }
     repositories {}

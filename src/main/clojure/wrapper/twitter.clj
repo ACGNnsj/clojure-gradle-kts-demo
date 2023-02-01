@@ -1,5 +1,5 @@
 (ns wrapper.twitter
-  (:import (org.example.api Calculation)))
+  (:import (io.github.acgnnsj.api Calculation)))
 (defn add
   "docstring"
   [x y] (Calculation/add x y)
