@@ -1,8 +1,6 @@
 import dev.clojurephant.plugin.clojure.tasks.ClojureCompile
 import groovy.xml.dom.DOMCategory.attributes
 
-//import clojuresque.tasks.ClojureSourceSet
-
 plugins {
     id("dev.clojurephant.clojure") version "0.7.0"
     id("application")
@@ -86,7 +84,16 @@ afterEvaluate {
 //                version = "1.0.0"
                 artifact(sourceJar)
                 artifact(javadocJar)
-                afterEvaluate { artifact(tasks.getByName("jar")) }
+//                afterEvaluate { artifact(tasks.getByName("jar")) }
+                from(components["java"])
+                versionMapping {
+                    usage("java-api") {
+                        fromResolutionOf("runtimeClasspath")
+                    }
+                    usage("java-runtime") {
+                        fromResolutionResult()
+                    }
+                }
                 pom {
                     name.set("Clojure-Java Lib")
                     description.set("A Clojure-Java library built by Gradle Kotlin DSL")
