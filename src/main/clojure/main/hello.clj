@@ -7,5 +7,6 @@
   "I don't do a whole lot ... yet."
   [& args]
   (println "Hello, World!")
-  (println (add 4 5))
+  (def result (add 342 939))
+  (println result)
   )

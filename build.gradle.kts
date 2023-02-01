@@ -1,4 +1,5 @@
 import dev.clojurephant.plugin.clojure.tasks.ClojureCompile
+import groovy.xml.dom.DOMCategory.attributes
 
 //import clojuresque.tasks.ClojureSourceSet
 //import groovy.xml.dom.DOMCategory.attributes
@@ -13,13 +14,13 @@ import dev.clojurephant.plugin.clojure.tasks.ClojureCompile
     }
 }*/
 //apply(plugin = "clojure")
-
 plugins {
     id("dev.clojurephant.clojure") version "0.7.0"
 //    id("java")
 //    id("clojure")
 //    clojure("1.7.0")
     id("application")
+    id("maven-publish")
 }
 
 group = "org.example"
@@ -72,3 +73,22 @@ tasks.jar {
 application {
     mainClassName = "main.hello"
 }
+
+val sourceJar by tasks.registering(Jar::class) {
+    from(sourceSets["main"].allSource)
+    archiveClassifier.set("sources")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifact(sourceJar)
+            afterEvaluate { artifact(tasks.getByName("jar")) }
+            groupId = "com.xxx"
+            artifactId = "widget"
+            version = "1.0.0"
+        }
+    }
+    repositories {}
+}
+
