@@ -29,7 +29,7 @@ if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
     signingKey = System.getenv("signingKey")
     signingPassword = System.getenv("signingPassword")
 }
-
+println("signingKey: ${signingKey}")
 
 
 group = "io.github.acgnnsj"
