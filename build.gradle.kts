@@ -31,6 +31,7 @@ if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
 }
 println(signingKey.contains("lIYEY9oMWxYJKwYBBAHaRw8BAQdAZdyZAKkdZM"))
 println(signingKey.contains("\n"))
+println(signingKey.contains("\r\n"))
 println(signingKey.contains("\\n"))
 
 group = "io.github.acgnnsj"
