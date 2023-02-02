@@ -13,10 +13,24 @@ println("systemProperties: $systemProperties")
 //ext["signing.keyId"] = systemProperties["signing.keyId"]
 //ext["signing.password"] = systemProperties["signing.password"]
 //ext["signing.secretKeyRingFile"] = systemProperties["signing.secretKeyRingFile"]
-val ossrhUsername: String by systemProperties
-val ossrhPassword: String by systemProperties
-val signingKey: String by systemProperties
-val signingPassword: String by systemProperties
+var ossrhUsername = ""
+var ossrhPassword = ""
+var signingKey = ""
+var signingPassword = ""
+println("isWindows: ${org.gradle.internal.os.OperatingSystem.current().isWindows}")
+if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
+    ossrhUsername = systemProperties["ossrhUsername"] as String
+    ossrhPassword = systemProperties["ossrhPassword"] as String
+    signingKey = systemProperties["signingKey"] as String
+    signingPassword = systemProperties["signingPassword"] as String
+} else {
+    ossrhUsername = System.getenv("ossrhUsername")
+    ossrhPassword = System.getenv("ossrhPassword")
+    signingKey = System.getenv("signingKey")
+    signingPassword = System.getenv("signingPassword")
+}
+
+
 
 group = "io.github.acgnnsj"
 version = "1.0.0"
