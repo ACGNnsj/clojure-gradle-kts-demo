@@ -29,8 +29,10 @@ if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
     signingKey = System.getenv("signingKey")
     signingPassword = System.getenv("signingPassword")
 }
-println("signingKey: ${signingKey}")
-
+println("signingKey: $signingKey")
+println(signingKey.contains("lIYEY9oMWxYJKwYBBAHaRw8BAQdAZdyZAKkdZM"))
+println(signingKey.contains("\n"))
+println(signingKey.contains("\\n"))
 
 group = "io.github.acgnnsj"
 version = "1.0.0"
