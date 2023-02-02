@@ -40,11 +40,11 @@ clojure {
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
-var count: Int = 0
+/*var count: Int = 0
 tasks.withType<ClojureCompile> {
     println("${count++}: compileClojure")
     println("${System.getenv()["HOMEDRIVE"]}")
-}
+}*/
 
 
 //sourceSets {
