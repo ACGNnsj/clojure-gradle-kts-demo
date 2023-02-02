@@ -9,11 +9,13 @@ plugins {
 }
 
 val systemProperties = System.getProperties()
-ext["signing.keyId"] = systemProperties["signing.keyId"]
-ext["signing.password"] = systemProperties["signing.password"]
-ext["signing.secretKeyRingFile"] = systemProperties["signing.secretKeyRingFile"]
+//ext["signing.keyId"] = systemProperties["signing.keyId"]
+//ext["signing.password"] = systemProperties["signing.password"]
+//ext["signing.secretKeyRingFile"] = systemProperties["signing.secretKeyRingFile"]
 val ossrhUsername: String by systemProperties
 val ossrhPassword: String by systemProperties
+val signingKey: String by systemProperties
+val signingPassword: String by systemProperties
 
 group = "io.github.acgnnsj"
 version = "1.0.0"
@@ -97,7 +99,7 @@ afterEvaluate {
                 pom {
                     name.set("Clojure-Java Lib")
                     description.set("A Clojure-Java library built by Gradle Kotlin DSL")
-                    url.set("http://www.example.com/library")
+                    url.set("https://github.com/ACGNnsj/clojure-gradle-kts-demo")
                     /*properties.set(
                         mapOf(
                             "myProp" to "value",
@@ -137,6 +139,7 @@ afterEvaluate {
         }
     }
     signing {
+        useInMemoryPgpKeys(signingKey, signingPassword)
         sign(publishing.publications["mavenJava"])
     }
 }
