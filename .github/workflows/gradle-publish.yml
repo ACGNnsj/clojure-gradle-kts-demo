@@ -48,7 +48,7 @@ jobs:
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ossrhUsername: #{{ secrets.OSSRH_USERNAME }}
-        ossrhPassword: #{{ secrets.OSSRH_PASSWORD }}
-        signingKey: #{{ secrets.SIGNING_KEY }}
-        signingPassword: #{{ secrets.SIGNING_PASSWORD }}
+        ossrhUsername: ${{ secrets.OSSRH_USERNAME }}
+        ossrhPassword: ${{ secrets.OSSRH_PASSWORD }}
+        signingKey: ${{ secrets.SIGNING_KEY }}
+        signingPassword: ${{ secrets.SIGNING_PASSWORD }}
