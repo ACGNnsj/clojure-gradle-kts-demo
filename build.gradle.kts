@@ -9,6 +9,7 @@ plugins {
 }
 
 val systemProperties = System.getProperties()
+println("systemProperties: $systemProperties")
 //ext["signing.keyId"] = systemProperties["signing.keyId"]
 //ext["signing.password"] = systemProperties["signing.password"]
 //ext["signing.secretKeyRingFile"] = systemProperties["signing.secretKeyRingFile"]
