@@ -45,6 +45,7 @@ jobs:
           ossrhPassword: ${{ secrets.OSSRH_PASSWORD }}
           signingKey: ${{ secrets.SIGNING_KEY }}
           signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+          signingKeyId: ${{ secrets.SIGNING_KEY_ID }}
       
       # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
       # the publishing section of your build.gradle
@@ -59,3 +60,4 @@ jobs:
           ossrhPassword: ${{ secrets.OSSRH_PASSWORD }}
           signingKey: ${{ secrets.SIGNING_KEY }}
           signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+          signingKeyId: ${{ secrets.SIGNING_KEY_ID }}
